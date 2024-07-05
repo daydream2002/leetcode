@@ -31,6 +31,7 @@ class Solution {
         for (int i = 0; i < length; i++) {
             if (!used[i]) {
                 path.add(nums[i]);
+
                 used[i] = true;
                 fun(length, ans, path, used, nums);
                 path.remove(path.size() - 1);
