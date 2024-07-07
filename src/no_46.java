@@ -3,7 +3,7 @@ import java.util.List;
 
 public class no_46 {
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solution_46 solution = new Solution_46();
         int[] nums = {0, 1, 2};
         List<List<Integer>> ans = solution.permute(nums);
         System.out.println(ans);
@@ -11,7 +11,7 @@ public class no_46 {
 
 }
 
-class Solution {
+class Solution_46 {
     List<List<Integer>> permute(int[] nums) {
         int length = nums.length;
         List<List<Integer>> ans = new ArrayList<>();
