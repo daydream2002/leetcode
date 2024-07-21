@@ -6,7 +6,7 @@ import java.util.List;
  * @Author daydream
  * @Date 2024/7/5
  */
-public class no_78 {
+public class No78 {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
         Solution_78 solution78 = new Solution_78();

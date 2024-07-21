@@ -5,7 +5,7 @@ import java.util.List;
  * @author wjh
  * @date 2024/7/7 下午3:52
  */
-public class no_39 {
+public class No39 {
     public static void main(String[] args) {
         int[] candidates = {2, 3, 6, 7};
         int target = 7;

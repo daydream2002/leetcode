@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class no_46 {
+public class No46 {
     public static void main(String[] args) {
         Solution_46 solution = new Solution_46();
         int[] nums = {0, 1, 2};

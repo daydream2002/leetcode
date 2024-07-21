@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * @date 2024/6/29 下午4:03
  */
 
-public class no_208 {
+public class No208 {
     public static void main(String[] args) {
         Trie trie = new Trie();
         trie.insert("apple");

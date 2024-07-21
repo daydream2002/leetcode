@@ -6,7 +6,7 @@ import java.util.List;
  * @author wjh
  * @date 2024/7/6 下午8:50
  */
-public class no_17 {
+public class No17 {
     public static void main(String[] args) {
         String digits = "234";
         Solution_17 solution17 = new Solution_17();

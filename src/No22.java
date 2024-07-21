@@ -7,7 +7,7 @@ import java.util.List;
  * @Description
  * @Date 2024/7/16
  */
-public class no_22 {
+public class No22 {
     public static void main(String[] args) {
         Solution22 solution22 = new Solution22();
         List<String> strings = solution22.generateParenthesis(3);

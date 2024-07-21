@@ -2,7 +2,7 @@
  * @author wjh
  * @date 2024/7/21 下午3:00
  */
-public class no_79 {
+public class No79 {
     public static void main(String[] args) {
         Solution79 solution79 = new Solution79();
         char[][] board = {
