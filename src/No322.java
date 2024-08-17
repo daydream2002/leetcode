@@ -7,12 +7,12 @@ import java.util.Arrays;
  */
 public class No322 {
     public static void main(String[] args) {
-        int i = new Solution().coinChange(new int[]{1, 2, 5}, 11);
+        int i = new Solution322().coinChange(new int[]{1, 2, 5}, 11);
         System.out.println(i);
     }
 }
 
-class Solution {
+class Solution322 {
     public int coinChange(int[] coins, int amount) {
         int[] arr = new int[amount + 1];
         arr[0] = 0;
