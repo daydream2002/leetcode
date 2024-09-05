@@ -16,7 +16,6 @@ public class No380 {
         randomizedSet.insert(0); // 从集合中移除 1 ，返回 true 。集合现在包含 [2] 。
         randomizedSet.remove(0); // 2 已在集合中，所以返回 false 。
         randomizedSet.insert(0); // 从集合中移除 1 ，返回 true 。集合现在包含 [2] 。
-
         randomizedSet.getRandom(); // 由于 2 是集合中唯一的数字，getRandom 总是返回 2 。
     }
 }
