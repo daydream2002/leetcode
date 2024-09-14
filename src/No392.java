@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Author daydream
  * Description
@@ -5,7 +7,7 @@
  */
 public class No392 {
     public static void main(String[] args) {
-        boolean subsequence = new Solution392Two().isSubsequence("abc", "ahbgdc");
+        boolean subsequence = new Solution392Three().isSubsequence("abc", "ahbgdc");
         System.out.println(subsequence);
     }
 }
@@ -48,5 +50,22 @@ class Solution392Two {
                 return false;
         }
         return true;
+    }
+}
+
+//解法三、动态规划2
+class Solution392Three {
+    public boolean isSubsequence(String s, String t) {
+        int[][] dp = new int[s.length() + 1][t.length() + 1];
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = 0; j < t.length(); j++) {
+                if (s.charAt(i) == t.charAt(j))
+                    dp[i + 1][j + 1] = dp[i][j] + 1;
+                else
+                    dp[i + 1][j + 1] = Math.max(dp[i + 1][j], dp[i][j + 1]);
+            }
+        }
+//        System.out.println(Arrays.deepToString(dp));
+        return dp[s.length()][t.length()] == s.length();
     }
 }
