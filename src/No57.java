@@ -13,6 +13,7 @@ public class No57 {
         int[] newInterval = {4, 8};
         int[][] insert = new Solution57().insert(intervals, newInterval);
         System.out.println(Arrays.deepToString(insert));
+        ArrayList<String> list = new ArrayList<>();
     }
 }
 
