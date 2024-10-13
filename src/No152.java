@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class No152 {
     public static void main(String[] args) {
-        //这个测试用力有点恶心，运算过程超过int最大值
+        //这个测试用例有点恶心，运算过程超过int最大值
         int res = new Solution152().maxProduct(new int[]{0, 10, 10, 10, 10, 10, 10, 10, 10, 10, -10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0});
         System.out.println(res);
     }
