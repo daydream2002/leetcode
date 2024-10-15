@@ -9,7 +9,7 @@ import java.util.Objects;
 public class No290 {
 }
 
-class Solution {
+class Solution290 {
     public boolean wordPattern(String pattern, String s) {
         String[] words = s.split(" ");
         char[] chars = pattern.toCharArray();
