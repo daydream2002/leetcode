@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Author daydream
  * Description
@@ -5,26 +7,30 @@
  */
 public class Test {
     public static void main(String[] args) {
-        int i = new Solution().minSubArrayLen(11, new int[]{1, 2, 3, 4, 5});
-        System.out.println(i);
-    }
-}
-
-class Solution {
-    public int minSubArrayLen(int target, int[] nums) {
-        int l = 0, r = -1, count = 0, res = nums.length+1;
-        while (l < nums.length) {
-            if (count < target) {
-                if (r == nums.length - 1)
-                    return res == nums.length+1 ? 0 : res;
-                else
-                    count = count + nums[++r];
-            } else {
-                res = Math.min(res, r - l + 1);
-                count = count - nums[l++];
+        Scanner scanner = new Scanner(System.in);
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        int count = 0, min = Integer.MAX_VALUE;
+        int[] arrA = new int[a];
+        int[] arrB = new int[b];
+        for (int i = 0; i < a; i++) {
+            for (int j = 0; j < b; j++) {
+                int temp = scanner.nextInt();
+                arrA[i] = arrA[i] + temp;
+                arrB[j] = arrB[j] + temp;
+                count = count + temp;
             }
-
         }
-        return res == nums.length+1 ? 0 : res;
+        int l = 0;
+        for (int i = 0; i < arrA.length; i++) {
+            l = arrA[i] + l;
+            min = Math.min(min, Math.abs(count - 2 * l));
+        }
+        l = 0;
+        for (int i = 0; i < arrB.length; i++) {
+            l = arrB[i] + l;
+            min = Math.min(min, Math.abs(count - 2 * l));
+        }
     }
 }
+
