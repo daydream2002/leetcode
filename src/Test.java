@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -9,18 +10,23 @@ import java.util.Scanner;
  */
 public class Test {
     public static void main(String[] args) {
+        int i = new Solution().strStr("a", "a");
+        System.out.println(i);
     }
 }
 
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        HashMap<Integer, Integer> hashMap = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            int num = nums[i];
-            if (hashMap.containsKey(target - num))
-                return new int[]{i, hashMap.get(target - num)};
-            hashMap.put(num, i);
+    public int strStr(String haystack, String needle) {
+        char[] haystackCharArray = haystack.toCharArray();
+        char[] needleCharArray = needle.toCharArray();
+        for (int i = 0; i < haystackCharArray.length - needleCharArray.length + 1; i++) {
+            for (int j = 0; j < needleCharArray.length; j++) {
+                if (haystackCharArray[i + j] != needleCharArray[j])
+                    break;
+                if (j == needle.length() - 1)
+                    return i;
+            }
         }
-        return new int[]{0, 0};
+        return -1;
     }
 }
