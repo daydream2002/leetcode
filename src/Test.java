@@ -10,23 +10,25 @@ import java.util.Scanner;
  */
 public class Test {
     public static void main(String[] args) {
-        int i = new Solution().strStr("a", "a");
-        System.out.println(i);
+
     }
 }
 
 class Solution {
-    public int strStr(String haystack, String needle) {
-        char[] haystackCharArray = haystack.toCharArray();
-        char[] needleCharArray = needle.toCharArray();
-        for (int i = 0; i < haystackCharArray.length - needleCharArray.length + 1; i++) {
-            for (int j = 0; j < needleCharArray.length; j++) {
-                if (haystackCharArray[i + j] != needleCharArray[j])
-                    break;
-                if (j == needle.length() - 1)
-                    return i;
+    public ListNode detectCycle(ListNode head) {
+        ListNode p = head, q = head;
+        while (q != null && q.next != null) {
+            p = p.next;
+            q = q.next.next;
+            if (p == q) {
+                p = head;
+                while (p != q) {
+                    p = p.next;
+                    q = q.next;
+                }
+                return p;
             }
         }
-        return -1;
+        return null;
     }
 }
