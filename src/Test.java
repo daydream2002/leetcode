@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class Test {
     public static void main(String[] args) {
-        int i = new Solution().evalRPN(new String[]{"4", "13", "5", "/", "+"});
+        int i = new Solution().evalRPN(new String[]{"4","13","5","/","+"});
         System.out.println(i);
     }
 }
