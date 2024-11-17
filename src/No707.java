@@ -19,14 +19,14 @@ public class No707 {
 }
 
 class MyLinkedList {
-    Node head;
+    Node707 head;
 
     public MyLinkedList() {
-        head = new Node(0);
+        head = new Node707(0);
     }
 
     public int get(int index) {
-        Node p = head;
+        Node707 p = head;
         int res = 0;
         for (int i = 0; i <= index; i++) {
             p = p.next;
@@ -38,23 +38,23 @@ class MyLinkedList {
     }
 
     public void addAtHead(int val) {
-        Node myLinkedList = new Node(val);
+        Node707 myLinkedList = new Node707(val);
         myLinkedList.next = head.next;
         head.next = myLinkedList;
     }
 
     public void addAtTail(int val) {
-        Node p = head;
+        Node707 p = head;
         while (p.next != null) {
             p = p.next;
         }
-        Node myLinkedList = new Node(val);
+        Node707 myLinkedList = new Node707(val);
         p.next = myLinkedList;
     }
 
     public void addAtIndex(int index, int val) {
-        Node p = head;
-        Node myLinkedList = new Node(val);
+        Node707 p = head;
+        Node707 myLinkedList = new Node707(val);
         for (int i = 0; i <= index - 1; i++) {
             p = p.next;
             if (p == null) {
@@ -68,7 +68,7 @@ class MyLinkedList {
     }
 
     public void deleteAtIndex(int index) {
-        Node p = head;
+        Node707 p = head;
         for (int i = 0; i <= index - 1; i++) {
             p = p.next;
             if (p == null)
@@ -80,11 +80,11 @@ class MyLinkedList {
     }
 }
 
-class Node {
+class Node707 {
     int val;
-    Node next;
+    Node707 next;
 
-    public Node(int val) {
+    public Node707(int val) {
         this.val = val;
     }
 }
