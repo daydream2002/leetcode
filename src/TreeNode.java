@@ -40,4 +40,24 @@ public class TreeNode {
         }
         return root;
     }
+
+    public static void print(TreeNode root) {
+        if (root == null) {
+            System.out.print("null ");
+            return;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode current = queue.poll();
+            if (current == null) {
+                System.out.print("null ");
+                continue;
+            }
+            System.out.print(current.val + " ");
+            queue.add(current.left);
+            queue.add(current.right);
+        }
+        System.out.println();
+    }
 }
