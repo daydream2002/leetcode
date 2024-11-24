@@ -6,7 +6,7 @@ import java.util.List;
  * Description
  * Date 2024/11/22 22:17
  */
-public interface No216 {
+public class No216 {
     public static void main(String[] args) {
         List<List<Integer>> lists = new Solution216().combinationSum3(3, 9);
         System.out.println(lists);
