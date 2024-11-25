@@ -1,27 +1,27 @@
 /**
  * Author daydream
  * Description
- * Date 2024/11/22 21:26
+ * Date 2024/11/22 14:36
  */
 public class No538 {
     public static void main(String[] args) {
-        TreeNode treeNode = new Solution538().convertBST(TreeNode.init(new Integer[]{4, 1, 6, 0, 2, 5, 7, null, null, null, 3, null, null, null, 8}));
+        TreeNode treeNode = new Solution538().sortedArrayToBST(new int[]{-10, -3, 0, 5, 9});
         TreeNode.print(treeNode);
     }
 }
 
 class Solution538 {
-    int count = 0;
-    public TreeNode convertBST(TreeNode root) {
-        convert(root);
-        return root;
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return insert(nums, 0, nums.length);
     }
-    void convert(TreeNode root) {
-        if (root==null)
-            return;
-        convert(root.right);
-        count = root.val + count;
-        root.val = count;
-        convert(root.left);
+
+    TreeNode insert(int[] nums, int l, int r) {
+        if (l >= r)
+            return null;
+        int mid = (l + r ) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = insert(nums, l, mid);
+        root.right = insert(nums, mid + 1, r);
+        return root;
     }
 }

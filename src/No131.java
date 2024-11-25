@@ -10,12 +10,12 @@ import java.util.Objects;
  */
 public class No131 {
     public static void main(String[] args) {
-        Solution131 solution131 = new Solution131();
-        System.out.println(solution131.partition("aab"));
+        List<List<String>> aab = new Solution131Two().partition("aab");
+        System.out.println(aab);
     }
 }
 
-class Solution131 {
+class Solution131One {
     List<List<String>> res = new ArrayList<>();
     List<String> huiWen = new ArrayList<>();
 
@@ -48,6 +48,43 @@ class Solution131 {
         int length = charArray.length;
         for (int i = 0; i < length / 2; i++) {
             if (charArray[i] != charArray[length - i - 1])
+                return false;
+        }
+        huiWen.add(s);
+        return true;
+    }
+}
+
+class Solution131Two {
+    List<List<String>> res = new ArrayList<>();
+    List<String> huiWen = new ArrayList<>();
+
+    public List<List<String>> partition(String s) {
+        dfs(s, new ArrayList<>());
+        return res;
+    }
+
+    void dfs(String s, List<String> list) {
+        if (Objects.equals(s, "")) {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        for (int i = 1; i <= s.length(); i++) {
+            String substring = s.substring(0, i);
+            if (isHui(substring)) {
+                list.add(substring);
+                dfs(s.substring(i), list);
+                list.removeLast();
+            }
+        }
+    }
+
+    boolean isHui(String s) {
+        if (huiWen.contains(s))
+            return true;
+        int length = s.length();
+        for (int i = 0; i < length / 2; i++) {
+            if (s.charAt(i) != s.charAt(length - i - 1))
                 return false;
         }
         huiWen.add(s);
