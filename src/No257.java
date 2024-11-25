@@ -9,11 +9,11 @@ import java.util.StringJoiner;
  */
 public class No257 {
     public static void main(String[] args) {
-        new Solution().binaryTreePaths(TreeNode.init(new Integer[]{1, 2, 3, null, 5}));
+        new Solution257().binaryTreePaths(TreeNode.init(new Integer[]{1, 2, 3, null, 5}));
     }
 }
 
-class Solution {
+class Solution257 {
 
     public List<String> binaryTreePaths(TreeNode root) {
         List<List<TreeNode>> resList = new ArrayList<>();
