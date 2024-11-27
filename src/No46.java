@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class No46 {
     public static void main(String[] args) {
-        Solution_46 solution = new Solution_46();
+        Solution46 solution = new Solution46();
         int[] nums = {0, 1, 2};
         List<List<Integer>> ans = solution.permute(nums);
         System.out.println(ans);
@@ -37,6 +38,33 @@ class Solution_46 {
                 path.remove(path.size() - 1);
                 used[i] = false;
             }
+        }
+    }
+}
+
+class Solution46 {
+    List<List<Integer>> res = new ArrayList<>();
+
+    public List<List<Integer>> permute(int[] nums) {
+        boolean[] used = new boolean[nums.length];  // 初始化数组
+        Arrays.fill(used, false);  // 设置所有元素为fal
+        dfs(nums, new ArrayList<>(), used);
+        return res;
+    }
+
+    void dfs(int[] nums, List<Integer> list, boolean[] used) {
+        if (nums.length == list.size()) {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (used[i])
+                continue;
+            used[i] = true;
+            list.add(nums[i]);
+            dfs(nums, list, used);
+            list.removeLast();
+            used[i] = false;
         }
     }
 }
