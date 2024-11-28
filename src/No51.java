@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * Author daydream
@@ -9,12 +7,12 @@ import java.util.List;
  */
 public class No51 {
     public static void main(String[] args) {
-        List<List<String>> lists = new Solution51().solveNQueens(4);
+        List<List<String>> lists = new Solution51Two().solveNQueens(4);
         System.out.println(lists);
     }
 }
 
-class Solution51 {
+class Solution51One {
     public List<List<String>> solveNQueens(int n) {
         int[] arr = new int[n];
         List<List<String>> ans = new ArrayList<>();
@@ -52,5 +50,54 @@ class Solution51 {
                 d2.remove(row + i);
             }
         }
+    }
+}
+
+class Solution51Two {
+    List<List<String>> res = new ArrayList<>();
+
+    public List<List<String>> solveNQueens(int n) {
+        int[][] map = new int[n][n];
+        dfs(map, new ArrayList<>(), 0);
+        return res;
+    }
+
+    void dfs(int[][] map, List<String> list, int depth) {
+        if (depth == map.length) {
+            for (int i = 0; i < map.length; i++) {
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int j = 0; j < map[i].length; j++) {
+                    if (map[i][j] == 1)
+                        stringBuilder.append("Q");
+                    else
+                        stringBuilder.append(".");
+                }
+                list.add(stringBuilder.toString());
+            }
+            res.add(new ArrayList<>(list));
+            list.clear();
+            return;
+        }
+        for (int i = 0; i < map.length; i++) {
+            if (isValid(map, depth, i)) {
+                map[depth][i] = 1;
+                dfs(map, list, depth + 1);
+                map[depth][i] = 0;
+            }
+        }
+    }
+
+    boolean isValid(int[][] map, int x, int y) {
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                if (j == y && map[i][j] == 1)
+                    return false;
+                if (i + j == x + y && map[i][j] == 1)
+                    return false;
+                if (x - y == i - j && map[i][j] == 1)
+                    return false;
+            }
+        }
+        return true;
     }
 }
