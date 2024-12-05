@@ -9,17 +9,25 @@ import java.util.*;
 
 class Test {
     public static void main(String[] args) {
-        boolean b = new Solution().canJump(new int[]{2, 3, 1, 1, 4});
+        new Solution().jump(new int[]{2, 3, 1, 1, 4});
     }
 }
 
 class Solution {
-    public boolean canJump(int[] nums) {
-        int maxIndex = 0;
+    public int jump(int[] nums) {
+        int max = 0;
+        int nextMax = 0;
+        int count = 0;
         for (int i = 0; i < nums.length; i++) {
-            if (maxIndex >= i)
-                maxIndex = Math.max(maxIndex, i + nums[i]);
+            nextMax = Math.max(i + nums[i], nextMax);
+            if (i == max) {
+                count++;
+                max = nextMax;
+                if (max >= nums.length-1)
+                    break;
+            }
         }
-        return maxIndex >= nums.length - 1;
+        System.out.println(count);
+        return count;
     }
 }
