@@ -9,25 +9,36 @@ import java.util.*;
 
 class Test {
     public static void main(String[] args) {
-        new Solution().jump(new int[]{2, 3, 1, 1, 4});
+        int[] gas = {5, 1, 2, 3, 4};
+        int[] cost = {4, 4, 1, 5, 1};
+        int i = new Solution().canCompleteCircuit(gas, cost);
+        System.out.println(i);
     }
 }
 
 class Solution {
-    public int jump(int[] nums) {
-        int max = 0;
-        int nextMax = 0;
-        int count = 0;
-        for (int i = 0; i < nums.length; i++) {
-            nextMax = Math.max(i + nums[i], nextMax);
-            if (i == max) {
-                count++;
-                max = nextMax;
-                if (max >= nums.length-1)
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int gasCount = 0;
+        int minGas = Integer.MAX_VALUE;
+        for (int i = 0; i < gas.length; i++) {
+            gasCount = gasCount + gas[i] - cost[i];
+            minGas = Math.min(minGas, gasCount);
+        }
+        if (minGas >= 0)
+            return 0;
+        if (gasCount < 0)
+            return -1;
+        for (int i = 1; i < gas.length; i++) {
+            gasCount = 0;
+            for (int j = i; j < i + gas.length; j++) {
+                gasCount = gasCount + gas[j % gas.length] - cost[j % gas.length];
+                if (gasCount < 0) {
+                    i = j;
                     break;
+                } else if (j == i + gas.length - 1)
+                    return i;
             }
         }
-        System.out.println(count);
-        return count;
+        return -1;
     }
 }
