@@ -9,36 +9,23 @@ import java.util.*;
 
 class Test {
     public static void main(String[] args) {
-        int[] gas = {5, 1, 2, 3, 4};
-        int[] cost = {4, 4, 1, 5, 1};
-        int i = new Solution().canCompleteCircuit(gas, cost);
-        System.out.println(i);
+        new Solution().findMinArrowShots(new int[][]{new int[]{-2147483646, -2147483645}, new int[]{2147483646, 2147483647}});
     }
 }
 
 class Solution {
-    public int canCompleteCircuit(int[] gas, int[] cost) {
-        int gasCount = 0;
-        int minGas = Integer.MAX_VALUE;
-        for (int i = 0; i < gas.length; i++) {
-            gasCount = gasCount + gas[i] - cost[i];
-            minGas = Math.min(minGas, gasCount);
-        }
-        if (minGas >= 0)
-            return 0;
-        if (gasCount < 0)
-            return -1;
-        for (int i = 1; i < gas.length; i++) {
-            gasCount = 0;
-            for (int j = i; j < i + gas.length; j++) {
-                gasCount = gasCount + gas[j % gas.length] - cost[j % gas.length];
-                if (gasCount < 0) {
-                    i = j;
-                    break;
-                } else if (j == i + gas.length - 1)
-                    return i;
+    public int findMinArrowShots(int[][] points) {
+        Arrays.sort(points, (a, b) -> {
+            return a[1] > b[1] ? 1 : -1;
+        });
+        int count = 0;
+        long index = Long.MIN_VALUE;
+        for (int i = 0; i < points.length; i++) {
+            if (points[i][0] > index) {
+                index = points[i][1];
+                count++;
             }
         }
-        return -1;
+        return count;
     }
 }
