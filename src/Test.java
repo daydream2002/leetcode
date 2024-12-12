@@ -9,23 +9,23 @@ import java.util.*;
 
 class Test {
     public static void main(String[] args) {
-        new Solution().findMinArrowShots(new int[][]{new int[]{-2147483646, -2147483645}, new int[]{2147483646, 2147483647}});
+        new Solution().monotoneIncreasingDigits(332);
     }
 }
 
 class Solution {
-    public int findMinArrowShots(int[][] points) {
-        Arrays.sort(points, (a, b) -> {
-            return a[1] > b[1] ? 1 : -1;
-        });
-        int count = 0;
-        long index = Long.MIN_VALUE;
-        for (int i = 0; i < points.length; i++) {
-            if (points[i][0] > index) {
-                index = points[i][1];
-                count++;
+    public int monotoneIncreasingDigits(int n) {
+        char[] charArray = Integer.toString(n).toCharArray();
+        int index = charArray.length;
+        for (int i = charArray.length - 1; i >= 1; i--) {
+            if (charArray[i - 1] > charArray[i]) {
+                charArray[i - 1] = (char) (charArray[i - 1] - 1);
+                index = i;
             }
         }
-        return count;
+        for (int i = index; i < charArray.length; i++) {
+            charArray[i] = '9';
+        }
+        return Integer.parseInt(new String(charArray));
     }
 }
