@@ -9,23 +9,25 @@ import java.util.*;
 
 class Test {
     public static void main(String[] args) {
-        new Solution().monotoneIncreasingDigits(332);
+        new Solution().jump(new int[]{2, 3, 1, 1, 4});
     }
 }
 
 class Solution {
-    public int monotoneIncreasingDigits(int n) {
-        char[] charArray = Integer.toString(n).toCharArray();
-        int index = charArray.length;
-        for (int i = charArray.length - 1; i >= 1; i--) {
-            if (charArray[i - 1] > charArray[i]) {
-                charArray[i - 1] = (char) (charArray[i - 1] - 1);
-                index = i;
+    public int jump(int[] nums) {
+        int max = 0;
+        int nextMax = 0;
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            nextMax = Math.max(i + nums[i], nextMax);
+            if (i == max) {
+                count++;
+                max = nextMax;
+                if (max >= nums.length-1)
+                    break;
             }
         }
-        for (int i = index; i < charArray.length; i++) {
-            charArray[i] = '9';
-        }
-        return Integer.parseInt(new String(charArray));
+        System.out.println(count);
+        return count;
     }
 }
