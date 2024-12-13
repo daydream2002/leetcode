@@ -9,25 +9,32 @@ import java.util.*;
 
 class Test {
     public static void main(String[] args) {
-        new Solution().jump(new int[]{2, 3, 1, 1, 4});
+        int[][] array = {
+                {0},
+                {1}
+        };
+        int res = new Solution().uniquePathsWithObstacles(array);
+        System.out.println(res);
     }
 }
 
 class Solution {
-    public int jump(int[] nums) {
-        int max = 0;
-        int nextMax = 0;
-        int count = 0;
-        for (int i = 0; i < nums.length; i++) {
-            nextMax = Math.max(i + nums[i], nextMax);
-            if (i == max) {
-                count++;
-                max = nextMax;
-                if (max >= nums.length-1)
-                    break;
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        int[] dp = new int[obstacleGrid[0].length];
+        for (int i = 0; i < obstacleGrid[0].length; i++) {
+            if (obstacleGrid[0][i] == 1)
+                break;
+            else
+                dp[i] = 1;
+        }
+        for (int i = 1; i < obstacleGrid.length; i++) {
+            for (int j = 0; j < obstacleGrid[0].length; j++) {
+                if (obstacleGrid[i][j] == 1)
+                    dp[j] = 0;
+                else if (j != 0)
+                    dp[j] = dp[j - 1] + dp[j];
             }
         }
-        System.out.println(count);
-        return count;
+        return dp[obstacleGrid[0].length - 1];
     }
 }
