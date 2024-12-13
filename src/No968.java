@@ -5,7 +5,7 @@
  */
 public class No968 {
     public static void main(String[] args) {
-        TreeNode root = TreeNode.init(new Integer[]{1,2,3,null,null,null,4});
+        TreeNode root = TreeNode.init(new Integer[]{1, 2, 3, null, null, null, 4});
         int i = new Solution968().minCameraCover(root);
         System.out.println(i);
     }
@@ -13,6 +13,7 @@ public class No968 {
 
 class Solution968 {
     int count = 0;
+
     public int minCameraCover(TreeNode root) {
         int dfs = dfs(root);
         if (dfs == 0)
@@ -26,13 +27,14 @@ class Solution968 {
             return 1;
         int left = dfs(root.left);
         int right = dfs(root.right);
-        if (left == 2 || right == 2)
-            return 1;
+        if (left == 0 || right == 0) {
+            count++;
+            return 2;
+        }
         else if (left == 1 && right == 1)
             return 0;
         else {
-            count++;
-            return 2;
+            return 1;
         }
     }
 }
