@@ -1,5 +1,4 @@
-import java.lang.constant.PackageDesc;
-import java.text.ListFormat;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +34,7 @@ class Solution131One {
             if (isHuiWen(substring)) {
                 partition.add(substring);
                 fun(s.substring(i), partition);
-                partition.removeLast();
+                partition.remove(partition.size()-1);
             }
         }
 
@@ -74,7 +73,7 @@ class Solution131Two {
             if (isHui(substring)) {
                 list.add(substring);
                 dfs(s.substring(i), list);
-                list.removeLast();
+                list.remove(list.size()-1);
             }
         }
     }
