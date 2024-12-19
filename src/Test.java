@@ -5,12 +5,12 @@
  */
 public class Test {
     public static void main(String[] args) {
-        int rob = new Solution().rob(new int[]{2, 7, 9, 3, 1});
+        int rob = new SolutionTest().rob(new int[]{2, 7, 9, 3, 1});
         System.out.println(rob);
     }
 }
 
-class Solution {
+class SolutionTest {
     public int rob(int[] nums) {
         int[] dp = new int[nums.length];
         if (nums.length==1)
