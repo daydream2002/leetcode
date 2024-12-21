@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Author daydream
  * Description
@@ -5,21 +7,21 @@
  */
 public class Test {
     public static void main(String[] args) {
-        int rob = new SolutionTest().rob(new int[]{2, 7, 9, 3, 1});
+        int rob = new SolutionTest().maxProfit(new int[]{7, 1, 5, 3, 6, 4});
         System.out.println(rob);
     }
 }
 
 class SolutionTest {
-    public int rob(int[] nums) {
-        int[] dp = new int[nums.length];
-        if (nums.length==1)
-            return nums[0];
-        dp[0] = nums[0];
-        dp[1] = Math.max(nums[0], nums[1]);
-        for (int i = 2; i < dp.length; i++) {
-            dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
+    public int maxProfit(int[] prices) {
+        int[][] dp = new int[prices.length][2];
+        //dp[i][0]持有股票dp[i][1]不持有股票
+        dp[0][0] = -prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] - prices[i]);
+            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] + prices[i]);;
         }
-        return dp[nums.length - 1];
+        System.out.println(Arrays.deepToString(dp));
+        return dp[prices.length - 1][1];
     }
 }
