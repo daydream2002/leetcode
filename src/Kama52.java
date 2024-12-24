@@ -1,9 +1,10 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
  * Author daydream
  * Description
- * Date 2024/12/18 10:56
+ * Date 2024/12/18 11:53
  */
 public class Kama52 {
     public static void main(String[] args) {
@@ -18,14 +19,14 @@ public class Kama52 {
         }
         int[][] dp = new int[a][b + 1];
         for (int i = weights[0]; i <= b; i++) {
-            dp[0][i]=values[0];
+            dp[0][i] = dp[0][i - weights[0]] + values[0];
         }
         for (int i = 1; i < a; i++) {
             for (int j = 0; j <= b; j++) {
+                //不选i
+                dp[i][j] = dp[i - 1][j];
                 if (j >= weights[i])
-                    dp[i][j] = Math.max(dp[i - 1][j - weights[i]] + values[i], dp[i - 1][j]);
-                else
-                    dp[i][j] = dp[i - 1][j];
+                    dp[i][j] = Math.max(dp[i][j - weights[i]] + values[i], dp[i][j]);
             }
         }
         System.out.println(dp[a - 1][b]);
