@@ -4,7 +4,7 @@ out/
 !**/src/test/**/out/
 # 忽略 .idea 文件夹
 .idea/
-
+leetcode.iml
 ### Eclipse ###
 .apt_generated
 .classpath
