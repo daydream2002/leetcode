@@ -17,6 +17,6 @@ public class Kama54 {
             else
                 sb.append(c);
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 }
