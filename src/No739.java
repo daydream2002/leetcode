@@ -1,6 +1,4 @@
-import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.Stack;
 
 /**
@@ -19,21 +17,14 @@ public class No739 {
 //递减单调栈
 class Solution739 {
     public int[] dailyTemperatures(int[] temperatures) {
-        int[] res = new int[temperatures.length];
         Stack<Integer> stack = new Stack<>();
+        int[] res = new int[temperatures.length];
         for (int i = 0; i < temperatures.length; i++) {
-            int index = -1;
-            while (true) {
-                if (stack.isEmpty() || temperatures[stack.peek()] >= temperatures[i]) {
-                    stack.push(i);
-                    break;
-                } else {
-                    index = stack.pop();
-                    if (index >= 0)
-                        res[index] = i - index;
-                }
+            while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
+                int index = stack.pop();
+                res[index] = i - index;
             }
-
+            stack.push(i);
         }
         return res;
     }
