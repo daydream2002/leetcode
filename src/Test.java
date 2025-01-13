@@ -1,29 +1,42 @@
-import java.util.Stack;
+import java.util.*;
 
-/**
- * Author daydream
- * Description
- * Date 2024/12/18 20:25
- */
+
 public class Test {
-    public static void main(String[] args) {
-        int i = new Solution().trap(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1});
-        System.out.println(i);
-    }
-}
+    static List<Integer> list = new ArrayList<>();
+    static List<List<Integer>> res = new ArrayList<>();
 
-class Solution {
-    public int trap(int[] height) {
-        Stack<Integer> stack = new Stack<>();
-        int res = 0;
-        for (int i = 0; i < height.length; i++) {
-            while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
-                int index = stack.pop();
-                if (!stack.isEmpty())
-                    res = res + (i - stack.peek() - 1) * (Math.min(height[i], height[stack.peek()]) - height[index]);
-            }
-            stack.push(i);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+        int[][] map = new int[N][N];
+        for (int i = 0; i < M; i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            map[a - 1][b - 1] = 1;
         }
-        return res;
+        list.add(0);
+        dfs(map);
+        for (int i = 0; i < res.size(); i++) {
+            for (int j = 0; j < res.get(i).size() - 1; j++) {
+                System.out.print(res.get(i).get(j) + 1 + " ");
+            }
+            System.out.println(res.get(i).get(res.get(i).size() - 1) + 1);
+        }
+    }
+
+    static void dfs(int[][] map) {
+        int start = list.get(list.size() - 1);
+        if (start == map.length - 1) {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        for (int i = 0; i < map.length; i++) {
+            if (map[start][i] == 1) {
+                list.add(i);
+                dfs(map);
+                list.removeLast();
+            }
+        }
     }
 }
