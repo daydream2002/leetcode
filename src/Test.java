@@ -2,41 +2,53 @@ import java.util.*;
 
 
 public class Test {
-    static List<Integer> list = new ArrayList<>();
-    static List<List<Integer>> res = new ArrayList<>();
-
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int M = sc.nextInt();
-        int[][] map = new int[N][N];
-        for (int i = 0; i < M; i++) {
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-            map[a - 1][b - 1] = 1;
-        }
-        list.add(0);
-        dfs(map);
-        for (int i = 0; i < res.size(); i++) {
-            for (int j = 0; j < res.get(i).size() - 1; j++) {
-                System.out.print(res.get(i).get(j) + 1 + " ");
-            }
-            System.out.println(res.get(i).get(res.get(i).size() - 1) + 1);
-        }
-    }
 
-    static void dfs(int[][] map) {
-        int start = list.get(list.size() - 1);
-        if (start == map.length - 1) {
-            res.add(new ArrayList<>(list));
-            return;
+    }
+    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int lenA = 0, lenB = 0;
+        ListNode curA = headA, curB = headB;
+
+        while (curA != null) {
+            curA = curA.next;
+            lenA++;
         }
-        for (int i = 0; i < map.length; i++) {
-            if (map[start][i] == 1) {
-                list.add(i);
-                dfs(map);
-                list.removeLast();
+        while (curB != null) {
+            curB = curB.next;
+            lenB++;
+        }
+        if (lenA > lenB) {
+            curA = headA;
+            curB = headB;
+            for (int i = 0; i < lenA - lenB; i++) {
+                curA = curA.next;
             }
+            if (headA == headB)
+                return headA;
+            for (int i = 0; i < lenB; i++) {
+                curA = curA.next;
+                curB = curB.next;
+                if (curA == curB) {
+                    return curA;
+                }
+            }
+            return null;
+        } else {
+            curA = headA;
+            curB = headB;
+            for (int i = 0; i < lenB - lenA; i++) {
+                curB = curB.next;
+            }
+            if (headA == headB)
+                return headA;
+            for (int i = 0; i < lenA; i++) {
+                curA = curA.next;
+                curB = curB.next;
+                if (curA == curB) {
+                    return curA;
+                }
+            }
+            return null;
         }
     }
 }
