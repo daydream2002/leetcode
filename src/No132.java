@@ -15,6 +15,10 @@ public class No132 {
 class Solution132 {
     public int minCut(String s) {
         boolean[][] dp = new boolean[s.length()][s.length()];
+        int[] resdp = new int[s.length()];//需要分割的次数
+        for (int i = 0; i < resdp.length; i++) {
+            resdp[i] = i;
+        }
         for (int i = 0; i < s.length(); i++)
             dp[i][i] = true;
         for (int i = s.length() - 1; i >= 0; i--) {
@@ -25,19 +29,17 @@ class Solution132 {
                     dp[i][j] = true;
             }
         }
-        System.out.println(Arrays.deepToString(dp));
-        if (dp[0][s.length() - 1])
-            return 0;
-        int res = 0, index = 0;
-        while (index <= s.length() ) {
-            for (int i = s.length() - 1; i >= index; i--) {
-                if (dp[index][i] == true) {
-                    index = i+1;
-                    break;
+        for (int i = 0; i < s.length(); i++) {
+            if (dp[0][i]) {
+                resdp[i] = 0;
+                continue;
+            }
+            for (int j = 0; j < i; j++) {
+                if (dp[j + 1][i]) {
+                    resdp[i] = Math.min(resdp[i], resdp[j] + 1);
                 }
             }
-            res++;
         }
-        return res;
+        return resdp[resdp.length - 1];
     }
 }
